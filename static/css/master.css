@@ -1,0 +1,215 @@
+/* Start Global Properties  */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+}
+
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+::placeholder {
+    transition: var(--main-transition);
+}
+
+:focus::placeholder {
+    opacity: 0;
+}
+
+/* End Global Properties  */
+
+/* Start Variables  */
+:root {
+    --main-transition : .3s;
+    --text-color: #777;
+    --color-1: #FA4032;
+    --color-2: #FA812F;
+    --color-3: #FAB12F;
+    --color-4: #FEF3E2;
+}
+/* End Variables  */
+
+body {
+    background-color: #F1F5F9;
+    min-height: 100vh;
+}
+
+/* Start Container  */
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Small Screen  */
+@media (min-width:768px) {
+    .container {
+        width: 750px;
+    }
+}
+/* Medium Screen  */
+@media (min-width:992px) {
+    .container {
+        width: 970px;
+    }
+}
+/* Large Screen  */
+@media (min-width:1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+/* End Container  */
+
+.header {
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 0 10px #ccc;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo > img {
+    width: 100px;
+}
+
+.header .logo p {
+    font-size: 30px;
+    text-shadow: 2px 2px 1px #FA4032;
+}
+
+.container {
+    position: relative;
+}
+
+.feature {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 25px;
+}
+
+.feature a {
+    color: #333;
+    font-size: 25px;
+    position: relative;
+}
+
+.feature a::before {
+    position: absolute;
+    content: attr(data-task);
+    width: 50px;
+    height: 10px;
+    background: #333;
+    bottom: -25px;
+    right: 50%;
+    font-size: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: .5s;
+    transform: translate(50%, 10px);
+    opacity: 0;
+}
+
+.feature a::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    box-sizing: border-box;
+    right: 50%;
+    border: 10px solid;
+    border-color: transparent transparent #333 transparent;
+    left: 50%;
+    top: 18px;
+    transition: .5s;
+    transform: translate(-50%,10px);
+    opacity: 0;
+}
+
+.feature a:hover::after,
+.feature a:hover::before {
+    opacity: 1;
+}
+
+.feature a:hover::after {
+    transform: translate(-50% , 0);
+}
+
+.feature a:hover::before {
+    transform: translate(50%,0);
+}
+
+
+/* =========================================  */
+/* Components  */
+
+
+/* menu tile  */
+
+.menu-title {
+    color: #333;
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.menu-title::before,
+.menu-title::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    height: 5px;
+}
+
+.menu-title::before {
+    width: 150px;
+    background-color: #fff;
+}
+
+.menu-title::after {
+    width: 50px;
+    background-color: #333;
+}
+
+/* decorator image  */
+
+.pizza-menu .decorator-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-50%, -50%);
+    opacity: .75;
+    z-index: -1000;
+}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block extra_CssFile %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/record.css') }}">
+{% endblock %}
+
+{% block home %}
+<a data-task="home" href="/"><i class="fas fa-home"></i></a>
+{% endblock %}
+
+{% block content %}
+<h1 class="menu-title">
+    Records <i class="fa-solid fa-book fa-bounce"></i>
+</h1>
+<table>
+    <thead>
+        <tr>
+            <td><i class="fa-solid fa-key"></i> Order ID</td>
+            <td><i class="fa-solid fa-dollar-sign"></i> Total</td>
+            <td><i class="fa-solid fa-user"></i> Client </td>
+            <td><i class="fa-solid fa-phone"></i> Phone</td>
+            <td><i class="fa-solid fa-calendar-days"></i> data</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for id,total,date,client,phone in order_data%}
+        <tr>
+            <td># {{id}}</td>
+            <td>{{total}} MAD</td>
+            <td>{{client}}</td>
+            <td>{{phone}}</td>
+            <td>{{date}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

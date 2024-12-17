@@ -1,0 +1,515 @@
+.header .cart {
+    position: relative;
+}
+
+.header .cart > i {
+    font-size: 25px;
+    color: #333;
+    cursor: pointer;
+}
+
+.header .cart .command {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    width: 350px;
+    max-height: 300px;
+    border-radius: 8px;
+    z-index: 1000;
+    box-shadow: 0px 0px 10px #999;
+    padding: 20px;
+    background: #fef3e236;;
+    overflow-y: auto;
+}
+
+.header .cart .command > h2 {
+    margin: 0;
+    border-bottom: 2px solid #ccc;
+    width: fit-content;
+    padding: 5px 0 5px;
+}
+
+.header .cart .command .order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 300;
+}
+
+.header .cart .command .order *:not(:last-child) {
+    flex: 1;
+}
+
+.header .cart .command .order .product-name{
+    font-weight: 300;
+}
+
+.header .cart .command .total {
+    padding: 10px 0;
+    border-top: 2px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .cart .command .total span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.header .cart .command .total button {
+    border: none;
+    padding: 5px 10px;
+    background: #97BE5A;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.header .cart .cart-quantity {
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    font-size: 15px;
+    background-color: #ddd;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pizza-menu {
+    padding-bottom: 30px;
+    position: relative;
+}
+
+.warper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    gap: 20px;
+}
+
+.card {
+    position: relative;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    transition: .6s;
+    box-shadow: var(--lt-shadowDefault);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card .image img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.card .content {
+    padding: 5px 10px;
+}
+
+.card .content .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.card .content .info h1 {
+    margin: 0;
+    font-size: 20px;
+
+}
+
+.card .content .info .price {
+    font-weight: 400;
+    background-color: var(--color-3);
+    padding: 5px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.card .content .add-product {
+    display: flex;
+    padding: 10px 0 0;
+    gap: 10px;
+    flex-direction: column-reverse;
+}
+
+.card .content .add-product .quantity {
+    padding: 15px;
+    user-select: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.card .content .add-product .quantity .add-to-cart,
+.card .content .add-product .quantity .remove-from-cart {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-4);
+}
+
+.card .content .add-product .quantity .count-of-item {
+    font-size: 25px;
+    font-weight: 200;
+}
+
+.card .content .add-product .add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    background-color: var(--color-1);
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+    user-select: none;
+    padding: 15px;
+}
+
+.card .content .add-product .add-button:hover {
+    background-color:#c4372d;
+}
+
+.card .options-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+}
+
+.card .options-menu .open-options {
+    font-size: 20px;
+    opacity: .25;
+    cursor: pointer;
+    transition: var(--main-transition);
+}
+
+.card .options-menu .open-options:hover {
+    opacity: 1;
+}
+
+.card .options-menu .options {
+    display: none;
+    width: 200px;
+    background: #fef3e2d9;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #eee;
+}
+
+.card .options-menu .options > div {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+
+.card .options-menu .options > div:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.card .options-menu .product-id {
+    font-style: italic;
+}
+
+.card .options-menu .options .delete-option {
+    color: var(--color-1);
+}
+
+.card .options-menu .options > div:not(:first-child) {
+    cursor: pointer;
+    transition: var(--main-transition);
+}
+
+.card .options-menu .options > div:not(:first-child):hover {
+    padding-left: 10px;
+}
+
+
+
+
+.add-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.add-card > i{
+    font-size: 50px;
+    color: var(--color-2);
+    cursor: pointer;
+    transition: var(--main-transition);
+}
+
+.add-card > i:hover {
+    color: #fc7115;
+}
+
+.add-card-form {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.add-card-form .cancel-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 2rem;
+    margin: -5px 5px 0 0;
+    transition: var(--main-transition);
+    cursor: pointer;
+}
+
+.add-card-form .cancel-button:hover {
+    color: #c4372d;
+}
+
+.add-card-form > h3 {
+    margin: 5px 0 20px;
+    position: relative;
+}
+
+.add-card-form > form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.add-card-form > form input[type = 'text'], 
+.add-card-form > form input[type = 'number'] ,
+.add-card-form > form input[type = 'file'] {
+    padding: 10px 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+input[type = 'file'] {
+    display: none;
+}
+
+.add-card-form > form input[type = 'submit'] {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    color: var(--text-color);
+    border-radius: 6px;
+    margin-top: auto;
+    background-color: var(--color-4);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--main-transition);
+}
+.add-card-form > form input[type = 'submit']:hover {
+    background-color: #fdd79c;
+}
+
+.custome-input-file {
+    background-color: var(--color-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: var(--main-transition);
+}
+
+.custome-input-file:hover {
+    background-color: #fdd79c;
+}
+
+.file-name {
+    display: block;
+    background-color: #f9f9f9;
+    margin-top: 10px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.no-order {
+    padding-left: 10px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.confirm-order {
+    position: absolute;
+    width: 400px;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fef3e236;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px #999;
+    display: none;
+}
+
+.confirm-order > h2 {
+    letter-spacing: .5px;
+}
+
+.confirm-order input:not([type = "submit"]) {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background-color: transparent;
+}
+
+.confirm-order input:not([type = "submit"])::placeholder {
+    color: #555;
+}
+
+.confirm-order .confirm-info {
+    width: fit-content;
+    margin: auto;
+    background: transparent;
+    padding: 5px;
+    color: #ffffffa8;
+    border-radius: 6px;
+    display: block;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    transition: var(--main-transition);
+}
+
+.confirm-order .confirm-info:hover {
+    background-color: var(--color-2);
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+.confirm-order .close-confirm {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: var(--main-transition);
+    font-size: 25px;
+}
+
+.confirm-order .close-confirm:hover {
+    color: red;
+}
+
+.update-menu {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: #fef3e2cc;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.update-menu input[type = "text"],
+.update-menu input[type = "number"] {
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    background: transparent;
+    width: 100%;
+}
+
+.update-menu .close-update {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: var(--main-transition);
+    margin: 5px;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.update-menu .close-update:hover {
+    color: var(--color-1);
+}
+
+.update-menu > h3 {
+    margin: 10px 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: #333;
+}
+
+.update-menu > button {
+    display: block;
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    transition: var(--main-transition);
+    cursor: pointer;
+}
+
+
+.update-menu > button:hover {
+    color: white;
+    background-color: #97BE5A;
+    border: none;
+    font-weight: bold;
+}
+
+.update-menu > label {
+    background: transparent;
+    border: 1px solid #aaa;
+}
+
+.update-menu > label:hover {
+    background: var(--color-4);
+    border: none;
+}
+
+.update-menu .file-name {
+    margin-bottom: 10px;
+    background: none;
+}
+
+

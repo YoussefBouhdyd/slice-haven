@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccC;
+    border-collapse: collapse;
+    border-radius: 8px;
+}
+
+thead tr td {
+    padding: 10px;
+    border: 1px solid #CCC;
+    text-align: center;
+    font-weight: 500;
+    background: #eee;
+    text-transform: capitalize;
+}
+
+thead tr td > i {
+    padding-right: 5px;
+}
+
+tbody tr td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+tbody tr td:first-child {
+    font-style: italic;
+    font-weight: bold;
+}
