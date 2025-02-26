@@ -4,3 +4,4 @@
 pip install -r requirements.txt
 python3 app.py
 ```
+> You can visite the website from [here](https://slice-haven.onrender.com/)
