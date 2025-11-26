@@ -179,4 +179,4 @@ def records():
     return render_template("records.html",order_data = order_data)
 
 if __name__ == '__main__':
-    pizzeria.run(debug=True)
+    pizzeria.run(host='0.0.0.0', debug=True)
