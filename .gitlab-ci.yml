@@ -4,8 +4,6 @@ stages:
   - build
   - test
 
-
-
 build:
   stage: build
   script:
@@ -15,5 +13,7 @@ build:
 test:
   stage: test
   script:
-    - pytest
+    - echo "testing ..."
+    - pip install -r requirements.txt
+    - pytest -v
 
