@@ -1,7 +1,17 @@
 image: python:3.13
 
+stages:
+  - build
+  - test
+
+
+
 build:
   script:
     - echo "building ..."
     - pip install -r requirements.txt
+
+test:
+  script:
+    - pytest
 
