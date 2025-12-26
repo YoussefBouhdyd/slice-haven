@@ -7,11 +7,13 @@ stages:
 
 
 build:
+  stage: build
   script:
     - echo "building ..."
     - pip install -r requirements.txt
 
 test:
+  stage: test
   script:
     - pytest
 
