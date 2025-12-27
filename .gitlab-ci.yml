@@ -4,6 +4,10 @@ stages:
   - build
   - test
 
+cache:
+  paths:
+    - ~/.cache/pip
+
 build:
   stage: build
   script:
