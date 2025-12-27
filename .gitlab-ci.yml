@@ -10,6 +10,7 @@ build:
     - echo "building ..."
     - pip install -r requirements.txt
 
+
 test:
   stage: test
   script:

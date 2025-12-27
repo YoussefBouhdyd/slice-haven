@@ -28,15 +28,15 @@
         Our Pizza Menu <i class="fa-solid fa-pizza-slice fa-beat"></i>
     </h1>
     <div class="warper">
-        {% for id,name,price,path in pizza_data%}
+        {% for pizza in pizza_data %}
         <div class="card">
             <div class="image">
-                <img src="{{ url_for('static', filename= path) }}" alt="">
+                <img src="{{ url_for('static', filename=pizza.image_path) }}" alt="">
             </div>
             <div class="content">
                 <div class="info">
-                    <h1>{{name}}</h1>
-                    <div class="price">{{price}} MAD</div>
+                    <h1>{{pizza.type}}</h1>
+                    <div class="price">{{pizza.price}} MAD</div>
                 </div>
                 <div class="add-product">
                     <div class="quantity" style="display: none;">
@@ -50,7 +50,7 @@
             <div class="options-menu">
                 <i class="open-options fa-solid fa-ellipsis-vertical"></i>
                 <div class="options">
-                    <div class="product-id" data-idtype="pizzaId">id: #{{id}}</div>
+                    <div class="product-id" data-idtype="pizzaId">id: #{{pizza.id}}</div>
                     <div class="update-option">Update <i class="fa-regular fa-pen-to-square"></i></div>
                     <div class="delete-option">Delete <i class="fa-regular fa-trash-can"></i></div>
                 </div>
@@ -59,12 +59,8 @@
                 <h3>Update Data Card <i class="fa-regular fa-pen-to-square"></i></h3>
                 <input type="text" placeholder="New Name:">
                 <input type="number" placeholder="New Price:">
-                <!-- this is reserved for coming feature (update image) -->
-                <!-- <label class="custome-input-file" for="file-upload{{id}}">New Image</label>
-                <input type="file" name="image" class="file-upload" id="file-upload{{id}}" accept="image/*" required>
-                <span class="file-name"></span> -->
                 <span class="close-update">&times;</span>
-                <button class="confirm-updates" data-id = "{{id}}" data-idtype="pizzaId">Confirme  <i class="fa-solid fa-check"></i></button>
+                <button class="confirm-updates" data-id="{{pizza.id}}" data-idtype="pizzaId">Confirme <i class="fa-solid fa-check"></i></button>
             </div>
         </div>
         {% endfor %}
@@ -89,20 +85,23 @@
         <img src="{{ url_for('static',filename='images/deco1.png')}}" alt="deco-image">
     </div> -->
 </div>
+
+
+
 <div class="drinks-menu">
     <h1 class="menu-title">
         Our Drinks Menu <i class="fa-solid fa-martini-glass-empty fa-beat"></i>
     </h1>
     <div class="warper">
-        {% for id,name,price,path in drink_data%}
+        {% for drink in drink_data %}
         <div class="card">
             <div class="image">
-                <img src="{{ url_for('static', filename= path) }}" alt="">
+                <img src="{{ url_for('static', filename= drink.image_path) }}" alt="">
             </div>
             <div class="content">
                 <div class="info">
-                    <h1>{{name}}</h1>
-                    <div class="price">{{price}} MAD</div>
+                    <h1>{{drink.type}}</h1>
+                    <div class="price">{{drink.price}} MAD</div>
                 </div>
                 <div class="add-product">
                     <div class="quantity" style="display: none;">
@@ -116,7 +115,7 @@
             <div class="options-menu">
                 <i class="open-options fa-solid fa-ellipsis-vertical"></i>
                 <div class="options">
-                    <div class="product-id" data-idtype="drinkId">id: #{{id}}</div>
+                    <div class="product-id" data-idtype="drinkId">id: #{{drink.id}}</div>
                     <div class="update-option">Update <i class="fa-regular fa-pen-to-square"></i></div>
                     <div class="delete-option">Delete <i class="fa-regular fa-trash-can"></i></div>
                 </div>
@@ -125,12 +124,8 @@
                 <h3>Update Data Card <i class="fa-regular fa-pen-to-square"></i></h3>
                 <input type="text" placeholder="New Name:">
                 <input type="number" placeholder="New Price:">
-                <!-- this is reserved for coming feature (update image) -->
-                <!-- <label class="custome-input-file" for="file-upload{{id}}">New Image</label>
-                <input type="file" name="image" class="file-upload" id="file-upload{{id}}" accept="image/*" required>
-                <span class="file-name"></span> -->
                 <span class="close-update">&times;</span>
-                <button class="confirm-updates" data-id = "{{id}}" data-idtype="drinkId">Confirme  <i class="fa-solid fa-check"></i></button>
+                <button class="confirm-updates" data-id="{{drink.id}}" data-idtype="drinkId">Confirme  <i class="fa-solid fa-check"></i></button>
             </div>
         </div>
         {% endfor %}
@@ -143,7 +138,7 @@
             <form method="POST" action="/POST" enctype="multipart/form-data">
                 <input type="text" name="name" placeholder="Drink Name" required>
                 <input type="number" name="price" placeholder="Price" required>
-                <label class="custome-input-file"  for="file-upload2">Choose Image</label>
+                <label class="custome-input-file" for="file-upload2">Choose Image</label>
                 <input type="file" name="image" class="file-upload" id="file-upload2" accept="image/*" required>
                 <span class="file-name"></span>
                 <input type="submit" name="form_type" value="Add Drink">
@@ -151,48 +146,47 @@
         </div>
     </div>
 </div>
+
+
+
 <div class="salad-menu">
     <h1 class="menu-title">
         Our Salads Menu <i class="fa-solid fa-leaf fa-beat"></i>
     </h1>
     <div class="warper">
-        {% for id,name,price,path in salad_data%}
+        {% for salad in salad_data %}
         <div class="card">
             <div class="image">
-                <img src="{{ url_for('static', filename= path) }}" alt="">
+            <img src="{{ url_for('static', filename= salad.image_path) }}" alt="">
             </div>
             <div class="content">
-                <div class="info">
-                    <h1>{{name}}</h1>
-                    <div class="price">{{price}} MAD</div>
+            <div class="info">
+                <h1>{{salad.name}}</h1>
+                <div class="price">{{salad.price}} MAD</div>
+            </div>
+            <div class="add-product">
+                <div class="quantity" style="display: none;">
+                <button class="remove-from-cart"> <i class="fa-solid fa-minus"></i></button>
+                <div class="count-of-item"></div>
+                <button class="add-to-cart"><i class="fa-solid fa-plus"></i></button>
                 </div>
-                <div class="add-product">
-                    <div class="quantity" style="display: none;">
-                        <button class="remove-from-cart"> <i class="fa-solid fa-minus"></i></button>
-                        <div class="count-of-item"></div>
-                        <button class="add-to-cart"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                    <div class="add-button"> Add </div>
-                </div>
+                <div class="add-button"> Add </div>
+            </div>
             </div>
             <div class="options-menu">
-                <i class="open-options fa-solid fa-ellipsis-vertical"></i>
-                <div class="options">
-                    <div class="product-id" data-idtype="saladId">id: #{{id}}</div>
-                    <div class="update-option">Update <i class="fa-regular fa-pen-to-square"></i></div>
-                    <div class="delete-option">Delete <i class="fa-regular fa-trash-can fa-shake"></i></div>
-                </div>
+            <i class="open-options fa-solid fa-ellipsis-vertical"></i>
+            <div class="options">
+                <div class="product-id" data-idtype="saladId">id: #{{salad.id}}</div>
+                <div class="update-option">Update <i class="fa-regular fa-pen-to-square"></i></div>
+                <div class="delete-option">Delete <i class="fa-regular fa-trash-can fa-shake"></i></div>
+            </div>
             </div>
             <div class="update-menu">
-                <h3>Update Data Card <i class="fa-regular fa-pen-to-square"></i></h3>
-                <input type="text" placeholder="New Name:">
-                <input type="number" placeholder="New Price:">
-                <!-- this is reserved for coming feature (update image) -->
-                <!-- <label class="custome-input-file" for="file-upload{{id}}">New Image</label>
-                <input type="file" name="image" class="file-upload" id="file-upload{{id}}" accept="image/*" required>
-                <span class="file-name"></span> -->
-                <span class="close-update">&times;</span>
-                <button class="confirm-updates" data-id = "{{id}}" data-idtype="saladId">Confirme  <i class="fa-solid fa-check"></i></button>
+            <h3>Update Data Card <i class="fa-regular fa-pen-to-square"></i></h3>
+            <input type="text" placeholder="New Name:">
+            <input type="number" placeholder="New Price:">
+            <span class="close-update">&times;</span>
+            <button class="confirm-updates" data-id="{{salad.id}}" data-idtype="saladId">Confirme  <i class="fa-solid fa-check"></i></button>
             </div>
         </div>
         {% endfor %}

@@ -12,6 +12,7 @@
 <h1 class="menu-title">
     Records <i class="fa-solid fa-book fa-bounce"></i>
 </h1>
+{% if order_data %}
 <table>
     <thead>
         <tr>
@@ -19,19 +20,22 @@
             <td><i class="fa-solid fa-dollar-sign"></i> Total</td>
             <td><i class="fa-solid fa-user"></i> Client </td>
             <td><i class="fa-solid fa-phone"></i> Phone</td>
-            <td><i class="fa-solid fa-calendar-days"></i> data</td>
+            <td><i class="fa-solid fa-calendar-days"></i> Date</td>
         </tr>
     </thead>
     <tbody>
-        {% for id,total,date,client,phone in order_data%}
+        {% for order in order_data %}
         <tr>
-            <td># {{id}}</td>
-            <td>{{total}} MAD</td>
-            <td>{{client}}</td>
-            <td>{{phone}}</td>
-            <td>{{date}}</td>
+            <td># {{ order.id }}</td>
+            <td>{{ order.total }} MAD</td>
+            <td>{{ order.client }}</td>
+            <td>{{ order.phone }}</td>
+            <td>{{ order.date }}</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<div style="color: gray; font-size: 1.5em; text-align: center; margin-top: 20px;">No records found.</div>
+{% endif %}
 {% endblock %}
