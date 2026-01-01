@@ -3,6 +3,7 @@ image: python:3.13
 stages:
   - build
   - test
+  - docker-build
 
 cache:
   paths:
@@ -22,3 +23,8 @@ test:
     - pip install -r requirements.txt
     - pytest -v
 
+docker_build:
+  stage: docker_build
+  script:
+    - echo "building docker image"
+    - docker build -t slice .
