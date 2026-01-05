@@ -5,6 +5,13 @@ stages:
   - test
   - docker-build
 
+variables:
+  ACR_NAME: sliceacr
+  ACR_LOGIN_SERVER: sliceacr.azurecr.io
+  RESOURCE_GROUP: rg-slice
+  WEBAPP_NAME: slice-haven
+  DOCKER_IMAGE_TAG: latest
+
 cache:
   paths:
     - ~/.cache/pip
@@ -29,5 +36,10 @@ docker_build:
   services:
     - docker:24-dind
   script:
+    - echo "Logging in to Azure..."
+    - az login --service-principal -u $appId -p $password --tenant $tenant
+    - az acr login --name $ACR_NAME
     - echo "building docker image"
-    - docker build -t slice .
+    - docker build -t $ACR_LOGIN_SERVER/$APP_NAME:$DOCKER_IMAGE_TAG .
+    - docker push $ACR_LOGIN_SERVER/$APP_NAME:$DOCKER_IMAGE_TAG
+
