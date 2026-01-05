@@ -35,10 +35,8 @@ docker_build:
   stage: docker-build
   services:
     - docker:24-dind
+    - azure/cli:latest
   script:
-    - echo "Install az"
-    - apk add --no-cache curl bash python3 py3-pip
-    - curl -sL https://aka.ms/InstallAzureCLIDeb | bash
     - echo "Logging in to Azure..."
     - az login --service-principal -u $appId -p $password --tenant $tenant
     - az acr login --name $ACR_NAME
