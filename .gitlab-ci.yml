@@ -24,7 +24,7 @@ test:
     - pytest -v
 
 docker_build:
-  stage: docker_build
+  stage: docker-build
   script:
     - echo "building docker image"
     - docker build -t slice .
