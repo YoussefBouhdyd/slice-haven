@@ -45,7 +45,4 @@ docker_build:
     - echo "building docker image"
     - docker build -t $ACR_LOGIN_SERVER/$APP_NAME:$DOCKER_IMAGE_TAG .
     - docker push $ACR_LOGIN_SERVER/$APP_NAME:$DOCKER_IMAGE_TAG
-  
-docker_push:
-  image
 
