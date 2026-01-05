@@ -26,6 +26,8 @@ test:
 docker_build:
   image: docker:29.1.3
   stage: docker-build
+  services:
+    - docker:24-dind
   script:
     - echo "building docker image"
     - docker build -t slice .
