@@ -17,7 +17,7 @@ build:
 
 
 test:
-  stage: testdocker_build
+  stage: test
   script:
     - echo "testing ..."
     - pip install -r requirements.txt
