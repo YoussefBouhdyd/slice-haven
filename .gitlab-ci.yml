@@ -35,12 +35,9 @@ docker_build:
   stage: docker-build
   services:
     - docker:24-dind
-    - azure/cli:latest
   script:
-    - echo "Logging in to Azure..."
-    - az login --service-principal -u $appId -p $password --tenant $tenant
-    - az acr login --name $ACR_NAME
     - echo "building docker image"
     - docker build -t $ACR_LOGIN_SERVER/$APP_NAME:$DOCKER_IMAGE_TAG .
+    - docker login $ACR_LOGIN_SERVER -u $ACR_USERNAME -p $ACR_PASSWORD
     - docker push $ACR_LOGIN_SERVER/$APP_NAME:$DOCKER_IMAGE_TAG
 
