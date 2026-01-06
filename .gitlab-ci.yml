@@ -6,9 +6,7 @@ stages:
   - docker-build
 
 variables:
-  ACR_NAME: sliceacr
   ACR_LOGIN_SERVER: sliceacr.azurecr.io
-  RESOURCE_GROUP: rg-slice
   WEBAPP_NAME: slice-haven
   DOCKER_IMAGE_TAG: latest
 
