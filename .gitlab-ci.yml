@@ -34,8 +34,11 @@ docker_build:
   services:
     - docker:24-dind
   script:
-    - echo "building docker image"
-    - docker build -t $ACR_LOGIN_SERVER/$WEBAPP_NAME:$DOCKER_IMAGE_TAG .
-    - docker login $ACR_LOGIN_SERVER -u $ACR_USERNAME --password-stdin $ACR_PASSWORD
-    - docker push $ACR_LOGIN_SERVER/$WEBAPP_NAME:$DOCKER_IMAGE_TAG
+    - echo "login to Azure"
+    - apk add --no-cache curl bash python3 py3-pip
+    - curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+    # - echo "building docker image"
+    # - docker build -t $ACR_LOGIN_SERVER/$WEBAPP_NAME:$DOCKER_IMAGE_TAG .
+    # - docker login $ACR_LOGIN_SERVER -u $ACR_USERNAME --password-stdin $ACR_PASSWORD
+    # - docker push $ACR_LOGIN_SERVER/$WEBAPP_NAME:$DOCKER_IMAGE_TAG
 
