@@ -30,14 +30,16 @@ test:
     - pytest -v
 
 docker_build:
-  image: mcr.microsoft.com/azure-cli:2.69.0
   stage: docker-build
+  image: docker:24-dind
   services:
     - docker:24-dind
-  script:
+  before_script:
+    - apk add --no-cache azure-cli
     - echo "Logging in to Azure..."
     - az login --service-principal -u $appId -p $password --tenant $tenant
     - az acr login --name $ACR_NAME
+  script:
     - echo "Building Docker image..."
     - docker build -t $ACR_LOGIN_SERVER/$WEBAPP_NAME:$DOCKER_IMAGE_TAG .
     - echo "Pushing Docker image to ACR..."
