@@ -43,6 +43,6 @@ docker_build_push:
   
 scan:
   stage: scan
-  image: aquasec/trivy:latest
+  image: docker:24
   script:
-    - trivy image --severity HIGH,CRITICAL $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image registry.gitlab.com/username/project:sha
