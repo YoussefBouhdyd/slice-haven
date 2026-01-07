@@ -6,10 +6,7 @@ stages:
   - docker-build
 
 variables:
-  ACR_LOGIN_SERVER: sliceacr.azurecr.io
-  ACR_NAME: sliceacr
-  WEBAPP_NAME: slice-haven
-  DOCKER_IMAGE_TAG: latest
+  CI_REGISTRY_IMAGE: registry.gitlab.com/YoussefBouhdyd/slice-haven
 
 cache:
   paths:
@@ -18,29 +15,24 @@ cache:
 build:
   stage: build
   script:
-    - echo "building ..."
+    - echo "#1| App Building"
     - pip install -r requirements.txt
 
 
 test:
   stage: test
   script:
-    - echo "testing ..."
+    - echo "#2| App Testing"
     - pip install -r requirements.txt
     - pytest -v
 
 docker_build:
   stage: docker-build
-  image: docker:24-dind
+  image: docker:24
   services:
     - docker:24-dind
-  before_script:
-    - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-    - echo "Logging in to Azure..."
-    - az login --service-principal -u $appId -p $password --tenant $tenant
-    - az acr login --name $ACR_NAME
+  # variables:
+  #   DOCKER_TLS_CERTDIR: ""
   script:
-    - echo "Building Docker image..."
-    - docker build -t $ACR_LOGIN_SERVER/$WEBAPP_NAME:$DOCKER_IMAGE_TAG .
-    - echo "Pushing Docker image to ACR..."
-    - docker push $ACR_LOGIN_SERVER/$WEBAPP_NAME:$DOCKER_IMAGE_TAG
+   - echo "#3 Building Docker Image"
+   - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA .
