@@ -3,7 +3,8 @@ image: python:3.13
 stages:
   - build
   - test
-  - docker-build
+  - docker-build-push
+  - scan 
 
 variables:
   CI_REGISTRY_IMAGE: registry.gitlab.com/youssefbouhdyd/slice-haven
@@ -26,8 +27,8 @@ test:
     - pip install -r requirements.txt
     - pytest -v
 
-docker_build:
-  stage: docker-build
+docker_build_push:
+  stage: docker-build-push
   image: docker:24
   services:
     - docker:24-dind
@@ -39,3 +40,11 @@ docker_build:
    - echo "#4| Pusing Docker Image"
    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  
+scan:
+  stage: scan
+  image: aquasec/trivy:latest
+  services:
+    - docker:24-dind
+  script:
+    - trivy image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
