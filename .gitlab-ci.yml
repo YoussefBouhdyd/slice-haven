@@ -6,7 +6,7 @@ stages:
   - docker-build
 
 variables:
-  CI_REGISTRY_IMAGE: registry.gitlab.com/YoussefBouhdyd/slice-haven
+  CI_REGISTRY_IMAGE: registry.gitlab.com/youssefbouhdyd/slice-haven
 
 cache:
   paths:
@@ -34,5 +34,8 @@ docker_build:
   # variables:
   #   DOCKER_TLS_CERTDIR: ""
   script:
-   - echo "#3 Building Docker Image"
+   - echo "#3| Building Docker Image"
    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA .
+   - echo "#4| Pusing Docker Image"
+   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+   - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
