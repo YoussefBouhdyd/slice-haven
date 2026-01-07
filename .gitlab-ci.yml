@@ -43,6 +43,8 @@ docker_build_push:
   
 scan:
   stage: scan
-  image: docker:24
+  image: 
+    name: aquasec/trivy:latest
+    entrypoint: [""]
   script:
-    - docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - trivy image --severity HIGH,CRITICAL $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
