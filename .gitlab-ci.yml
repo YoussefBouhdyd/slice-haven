@@ -33,18 +33,18 @@ docker_build_push:
   image: docker:24
   services:
     - docker:24-dind
-      script:
-        - echo "Login To Azure"
-        - echo "$ACR_PASSWORD" | docker login $ACR_LOGIN_SERVER -u $ACR_USERNAME --password-stdin
-        - echo "Login To GitLab Registry"
-        - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
-        - echo "#3| Building Docker Image"
-        - docker build -t $ACR_LOGIN_SERVER/slice-haven:$CI_COMMIT_SHORT_SHA -t $IMG_TAG:$CI_COMMIT_SHORT_SHA .
-        - echo "#4| Pushing Docker Image"
-        - echo "Push to ACR"
-        - docker push $ACR_LOGIN_SERVER/slice-haven:$CI_COMMIT_SHORT_SHA
-        - echo "Push to GitLab Registry"
-        - docker push $IMG_TAG:$CI_COMMIT_SHORT_SHA
+  script:
+    - echo "Login To Azure"
+    - echo "$ACR_PASSWORD" | docker login $ACR_LOGIN_SERVER -u $ACR_USERNAME --password-stdin
+    - echo "Login To GitLab Registry"
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
+    - echo "#3| Building Docker Image"
+    - docker build -t $ACR_LOGIN_SERVER/slice-haven:$CI_COMMIT_SHORT_SHA -t $IMG_TAG:$CI_COMMIT_SHORT_SHA .
+    - echo "#4| Pushing Docker Image"
+    - echo "Push to ACR"
+    - docker push $ACR_LOGIN_SERVER/slice-haven:$CI_COMMIT_SHORT_SHA
+    - echo "Push to GitLab Registry"
+    - docker push $IMG_TAG:$CI_COMMIT_SHORT_SHA
   
 scan:
   stage: scan
