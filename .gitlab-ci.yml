@@ -54,7 +54,9 @@ scan:
 deploy:
   stage: deploy
   image: docker:24
+  services:
+    - docker:24-dind
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
-    - docker run -d --name myapp -p 80:80 $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - docker run -d --name slice-haven -p 80:80 $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
