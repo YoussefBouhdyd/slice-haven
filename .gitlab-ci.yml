@@ -42,10 +42,6 @@ code-quality:
       - .sonar/cache
   script:
     - sonar-scanner
-  only:
-    - merge_requests
-    - master
-    - develop
 
 
 docker_build_push:
