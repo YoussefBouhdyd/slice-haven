@@ -34,7 +34,7 @@ lint-flak8-pylint:
     - flake8 app/ --output-file=flake8_report.txt
     - echo "Running Pylint..."
     - pylint app/ > pylint_report.txt
-  artifact:
+  artifacts:
     paths:
       flake8_report.txt
       pylint_report.txt
