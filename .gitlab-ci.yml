@@ -2,9 +2,10 @@ image: python:3.13
 
 stages:
   - build
+  - lint
   - test
-  - quality-scan-with-sonarQube
-  - docker-build-push
+  - code-quality
+  - docker
   - scan 
   - deploy 
 
@@ -23,6 +24,21 @@ build:
     - echo "#1| App Building"
     - pip install -r requirements.txt
 
+lint-flak8-pylint:
+  stage: lint
+  image: python:3.13
+  before_script:
+    - pip install flake8 pylint
+  script:
+    - echo "Running Flake8..."
+    - flake8 app/ --output-file=flake8_report.txt
+    - echo "Running Pylint..."
+    - pylint app/ > pylint_report.txt
+  artifact:
+    paths:
+      flake8_report.txt
+      pylint_report.txt
+
 
 test:
   stage: test
@@ -31,8 +47,8 @@ test:
     - pip install -r requirements.txt
     - pytest -v
 
-code-quality:
-  stage: quality-scan-with-sonarQube
+sonarQube-scan:
+  stage: code-quality
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
@@ -45,7 +61,7 @@ code-quality:
 
 
 docker_build_push:
-  stage: docker-build-push
+  stage: docker
   image: docker:24
   services:
     - docker:24-dind
@@ -62,7 +78,7 @@ docker_build_push:
     - echo "Push to GitLab Registry"
     - docker push $IMG_TAG:$CI_COMMIT_SHORT_SHA
   
-scan:
+scan-image-trivy:
   stage: scan
   image: 
     name: aquasec/trivy:latest
@@ -71,7 +87,7 @@ scan:
     - trivy image --severity HIGH,CRITICAL $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
 
 
-deploy_to_azure:
+deploy-to-azure:
   stage: deploy
   image: mcr.microsoft.com/azure-cli:latest
   script:
